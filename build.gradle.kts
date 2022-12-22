@@ -80,9 +80,6 @@ tasks.withType<JavaCompile>().configureEach {
     options.encoding = "UTF-8"
     options.compilerArgs.add("-parameters")
 }
-tasks.named<JavaCompile>("compileJava") {
-    options.release.set(8)
-}
 
 configure<ContactsExtension> {
     val j = Contact("team@moderne.io")
