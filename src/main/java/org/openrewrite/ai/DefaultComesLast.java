@@ -45,20 +45,21 @@ public class DefaultComesLast extends Recipe {
     protected JavaVisitor<ExecutionContext> getVisitor() {
         return new JavaVisitor<>() {
             @Override
-            public J visitSwitch(J.Switch switzh, ExecutionContext executionContext) {
-                GenerativeCodeEditor editor = new GenerativeCodeEditor(this::getCursor, executionContext);
-                for (Statement statement : switzh.getCases().getStatements()) {
+            public J visitSwitch(J.Switch aSwitch, ExecutionContext ctx) {
+                GenerativeCodeEditor editor = new GenerativeCodeEditor(this::getCursor, ctx);
+
+                for (Statement statement : aSwitch.getCases().getStatements()) {
                     if (statement instanceof J.Case && ((J.Case) statement).getExpressions().get(0) instanceof J.Identifier identifier) {
                         if (identifier.getSimpleName().equals("default")) {
                             return editor.edit(
-                                switzh,
+                                aSwitch,
                                 "Write this switch statement with the default case last."
                             );
                         }
                     }
                 }
 
-                return super.visitSwitch(switzh, executionContext);
+                return super.visitSwitch(aSwitch, ctx);
             }
         };
     }
