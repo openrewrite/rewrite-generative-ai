@@ -22,7 +22,7 @@ public class DefaultComesLastTest implements RewriteTest {
     public void defaults(RecipeSpec spec) {
         try (InputStream token = requireNonNull(getClass().getResourceAsStream("/token.txt"))) {
             ExecutionContext ctx = GenerativeCodeExecutionContextView.view(new InMemoryExecutionContext())
-              .setOpenApiToken(new String(token.readAllBytes()));
+              .setOpenApiToken(new String(token.readAllBytes()).trim());
             ctx = HttpSenderExecutionContextView.view(ctx).setHttpSender(new HttpUrlConnectionSender(
               Duration.ofSeconds(10), Duration.ofSeconds(30)));
 
