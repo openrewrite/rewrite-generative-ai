@@ -42,7 +42,7 @@ public class DefaultComesLast extends Recipe {
     }
 
     @Override
-    protected JavaVisitor<ExecutionContext> getVisitor() {
+    public JavaVisitor<ExecutionContext> getVisitor() {
         return new JavaVisitor<>() {
             @Override
             public J visitSwitch(J.Switch aSwitch, ExecutionContext ctx) {
