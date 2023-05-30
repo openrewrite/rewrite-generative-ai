@@ -50,7 +50,7 @@ public class DefaultComesLast extends Recipe {
 
                 for (Statement statement : aSwitch.getCases().getStatements()) {
                     if (statement instanceof J.Case && ((J.Case) statement).getExpressions().get(0) instanceof J.Identifier identifier) {
-                        if (identifier.getSimpleName().equals("default")) {
+                        if ("default".equals(identifier.getSimpleName())) {
                             return editor.edit(
                                 aSwitch,
                                 "Write this switch statement with the default case last."
