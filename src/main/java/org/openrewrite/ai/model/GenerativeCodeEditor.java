@@ -46,8 +46,10 @@ public class GenerativeCodeEditor {
                 return Markup.warn(j, new IllegalStateException("Code edit failed: " + response.getError()));
             }
 
-            return j.withTemplate(JavaTemplate.builder(cursor, response.getChoices().get(0).getText()).build(),
-                j.getCoordinates().replace());
+            return JavaTemplate.builder(response.getChoices().get(0).getText())
+                .contextSensitive()
+                .build()
+                .apply(cursor.get(), j.getCoordinates().replace());
         } catch (IOException e) {
             return Markup.warn(j, e);
         }

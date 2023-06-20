@@ -1,6 +1,8 @@
 package org.openrewrite.ai;
 
 import org.junit.jupiter.api.RepeatedTest;
+import org.junit.jupiter.api.condition.DisabledIf;
+import org.junit.jupiter.api.condition.DisabledIfEnvironmentVariable;
 import org.openrewrite.ExecutionContext;
 import org.openrewrite.HttpSenderExecutionContextView;
 import org.openrewrite.InMemoryExecutionContext;
@@ -16,6 +18,7 @@ import java.time.Duration;
 import static java.util.Objects.requireNonNull;
 import static org.openrewrite.java.Assertions.java;
 
+@DisabledIfEnvironmentVariable(named = "CI", matches = "true")
 public class DefaultComesLastTest implements RewriteTest {
 
     @Override
