@@ -44,13 +44,14 @@ public class DefaultComesLast extends Recipe {
 
     @Override
     public TreeVisitor<?, ExecutionContext> getVisitor() {
-        return new JavaVisitor<>() {
+        return new JavaVisitor<ExecutionContext>() {
             @Override
             public J visitSwitch(J.Switch aSwitch, ExecutionContext ctx) {
                 GenerativeCodeEditor editor = new GenerativeCodeEditor(this::getCursor, ctx);
 
                 for (Statement statement : aSwitch.getCases().getStatements()) {
-                    if (statement instanceof J.Case && ((J.Case) statement).getExpressions().get(0) instanceof J.Identifier identifier) {
+                    if (statement instanceof J.Case && ((J.Case) statement).getExpressions().get(0) instanceof J.Identifier) {
+                        J.Identifier identifier = (J.Identifier) ((J.Case) statement).getExpressions().get(0);
                         if ("default".equals(identifier.getSimpleName())) {
                             return editor.edit(
                                 aSwitch,
