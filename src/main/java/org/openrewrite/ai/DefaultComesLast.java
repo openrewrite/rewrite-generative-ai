@@ -26,7 +26,7 @@ import org.openrewrite.java.tree.J;
 import org.openrewrite.java.tree.Statement;
 
 @Value
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 public class DefaultComesLast extends Recipe {
     @Override
     public String getDisplayName() {
