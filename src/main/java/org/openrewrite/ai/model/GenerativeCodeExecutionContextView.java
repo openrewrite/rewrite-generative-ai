@@ -17,7 +17,6 @@ package org.openrewrite.ai.model;
 
 import org.openrewrite.DelegatingExecutionContext;
 import org.openrewrite.ExecutionContext;
-import org.openrewrite.HttpSenderExecutionContextView;
 
 import static java.util.Objects.requireNonNull;
 
