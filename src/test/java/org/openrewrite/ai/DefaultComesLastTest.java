@@ -33,7 +33,7 @@ import static java.util.Objects.requireNonNull;
 import static org.openrewrite.java.Assertions.java;
 
 @DisabledIfEnvironmentVariable(named = "CI", matches = "true")
-public class DefaultComesLastTest implements RewriteTest {
+class DefaultComesLastTest implements RewriteTest {
 
     @Override
     public void defaults(RecipeSpec spec) {
