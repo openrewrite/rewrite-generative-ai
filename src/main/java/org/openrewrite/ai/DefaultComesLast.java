@@ -51,8 +51,8 @@ public class DefaultComesLast extends Recipe {
 
                 for (Statement statement : aSwitch.getCases().getStatements()) {
                     if (statement instanceof J.Case &&
-                        ((J.Case) statement).getExpressions().get(0) instanceof J.Identifier) {
-                        J.Identifier identifier = (J.Identifier) ((J.Case) statement).getExpressions().get(0);
+                        ((J.Case) statement).getCaseLabels().get(0) instanceof J.Identifier) {
+                        J.Identifier identifier = (J.Identifier) ((J.Case) statement).getCaseLabels().get(0);
                         if ("default".equals(identifier.getSimpleName())) {
                             return editor.edit(
                                 aSwitch,
