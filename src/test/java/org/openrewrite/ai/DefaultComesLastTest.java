@@ -52,8 +52,9 @@ class DefaultComesLastTest implements RewriteTest {
         }
     }
 
-    @RepeatedTest(10)
-    void edit() {
+    @RepeatedTest(20)
+    void numericalCaseWithFallThrough() {
+        //noinspection DefaultNotLastCaseInSwitch
         rewriteRun(
           //language=java
           java(
@@ -68,6 +69,7 @@ class DefaultComesLastTest implements RewriteTest {
                           case 0:
                               doSomething();
                               break;
+                          case 2:
                           default:
                               error();
                               break;
@@ -83,7 +85,7 @@ class DefaultComesLastTest implements RewriteTest {
                   void doSomething() {}
                   void doSomethingElse() {}
                   void error() {}
-                            
+
                   void test(int param) {
                       switch (param) {
                           case 0:
@@ -92,10 +94,40 @@ class DefaultComesLastTest implements RewriteTest {
                           case 1:
                               doSomethingElse();
                               break;
+                          case 2:
                           default:
                               error();
                               break;
                       }
+                  }
+              }
+              """
+          )
+        );
+    }
+
+    @RepeatedTest(20)
+    void noChangesExpected() {
+        rewriteRun(
+          //language=java
+          java(
+            """
+              import java.util.ArrayList;
+              import java.util.List;
+              class Test {
+                  List<String> services(String param) {
+                     List<String> services = new ArrayList<>();
+                      switch (param) {
+                          case "vip":
+                              services.add("drinks");
+                          case "special":
+                              services.add("food");
+                          case "default":
+                              services.add("entry");
+                          default:
+                              services.add("online");
+                      }
+                      return services;
                   }
               }
               """
