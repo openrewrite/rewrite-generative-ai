@@ -30,7 +30,7 @@ jobs:
         uses: actions/setup-java@v5
         with:
           distribution: zulu
-Use           java-version: 21
+          java-version: 21
       - name: setup-cache
         uses: actions/cache@v4
         with:
