@@ -28,19 +28,13 @@ import org.openrewrite.java.tree.Statement;
 @EqualsAndHashCode(callSuper = false)
 @Value
 public class DefaultComesLast extends Recipe {
-    @Override
-    public String getDisplayName() {
-        return "Switch `default` clauses should be last";
-    }
+    String displayName = "Switch `default` clauses should be last";
 
-    @Override
-    public String getDescription() {
-        return "`switch` can contain a `default` clause for various reasons: to handle unexpected values, " +
+    String description = "`switch` can contain a `default` clause for various reasons: to handle unexpected values, " +
                "to show that all the cases were properly considered. " +
                "For readability purposes, to help a developer to quickly find the default behavior of a switch statement, " +
                "it is recommended to put the default clause at the end of the switch statement. This rule raises an issue " +
                "if the default clause is not the last one of the switch's cases.";
-    }
 
     @Override
     public TreeVisitor<?, ExecutionContext> getVisitor() {
