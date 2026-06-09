@@ -3,3 +3,5 @@ build/
 .idea/
 out/
 src/test/resources/token.txt
+
+.context/
